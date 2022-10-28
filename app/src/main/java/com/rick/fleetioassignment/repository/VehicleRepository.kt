@@ -1,6 +1,5 @@
 package com.rick.fleetioassignment.repository
 
-import android.util.Log
 import com.rick.fleetioassignment.api.VehicleAPIService
 import com.rick.fleetioassignment.model.DataState
 import com.rick.fleetioassignment.model.Vehicle

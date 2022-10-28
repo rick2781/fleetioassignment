@@ -42,7 +42,7 @@ class VehicleItemAdapter(private val context: Context) :
 
                 root.setOnClickListener {
                     val action =
-                        VehicleListFragmentDirections.actionVehicleListFragmentToSecondFragment()
+                        VehicleListFragmentDirections.actionVehicleListFragmentToSecondFragment(item)
                     binding.root.findNavController().navigate(action)
                 }
             }

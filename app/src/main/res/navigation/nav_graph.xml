@@ -8,15 +8,19 @@
     <fragment
         android:id="@+id/VehicleListFragment"
         android:name="com.rick.fleetioassignment.ui.vehiclelist.VehicleListFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/vehicles_label"
         tools:layout="@layout/fragment_vehicle_list">
         <action
             android:id="@+id/action_VehicleListFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/VehicleDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.rick.fleetioassignment.ui.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second"/>
+        android:id="@+id/VehicleDetailFragment"
+        android:name="com.rick.fleetioassignment.ui.vehicledetail.VehicleDetailFragment"
+        android:label="@string/vehicle_detail"
+        tools:layout="@layout/fragment_second" >
+        <argument
+            android:name="vehicle"
+            app:argType="com.rick.fleetioassignment.model.Vehicle" />
+    </fragment>
 </navigation>
