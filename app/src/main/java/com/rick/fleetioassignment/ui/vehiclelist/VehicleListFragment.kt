@@ -46,12 +46,10 @@ class VehicleListFragment : Fragment() {
         with(viewModel) {
 
             lifecycleScope.launch {
-                dealState.collect {
-                    dealAdapter.submitList(it)
+                getVehiclesPaged().collect {
+                    dealAdapter.submitData(it)
                 }
             }
-
-            getVehicles()
         }
     }
 

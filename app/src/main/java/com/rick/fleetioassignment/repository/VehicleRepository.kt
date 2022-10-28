@@ -1,21 +1,28 @@
 package com.rick.fleetioassignment.repository
 
+import android.util.Log
 import com.rick.fleetioassignment.api.VehicleAPIService
+import com.rick.fleetioassignment.model.DataState
 import com.rick.fleetioassignment.model.Vehicle
 
 class VehicleRepository(private val vehicleAPIService: VehicleAPIService) {
 
-    suspend fun getVehicles(): List<Vehicle> =
-        vehicleAPIService.getVehicles(AUTH_TOKEN, ACC_TOKEN).map { it.toDomainData() }
+    suspend fun getVehicles(page: String): DataState<List<Vehicle>> =
+        try {
+            val vehicles = vehicleAPIService.getVehicles(page = page)
+
+            if (vehicles.isSuccessful) {
+                DataState.Success(
+                    vehicles.body()!!.map { it.toDomainData() },
+                    vehicles.headers().get(PAGINATION_KEY)
+                )
+            } else DataState.Error(vehicles.errorBody().toString())
+
+        } catch (e: Exception) {
+            DataState.Error(e.message.toString())
+        }
 
     private companion object {
-
-        /**
-         * Definitely wouldn't store the authentication token like this. Just doing that way for the sake of simplicity
-         */
-
-        const val AUTH_TOKEN = "Token token=a3ddc620b35b609682192c167de1b1f3f5100387"
-
-        const val ACC_TOKEN = "798819214b"
+        const val PAGINATION_KEY = "x-pagination-current-page"
     }
 }

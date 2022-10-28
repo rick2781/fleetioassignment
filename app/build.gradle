@@ -43,6 +43,7 @@ dependencies {
     def koin_version = "3.2.2"
     def retrofit_version = "2.9.0"
     def nav_version = "2.5.2"
+    def paging_version = "3.1.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -70,4 +71,7 @@ dependencies {
 
     //Koin - Dependency Injection
     implementation "io.insert-koin:koin-android:$koin_version"
+
+    //Pagination
+    implementation "androidx.paging:paging-runtime:$paging_version"
 }

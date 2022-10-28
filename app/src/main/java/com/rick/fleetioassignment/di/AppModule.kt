@@ -1,6 +1,7 @@
 package com.rick.fleetioassignment.di
 
 import com.rick.fleetioassignment.api.VehicleAPIClient
+import com.rick.fleetioassignment.api.VehiclePagingSource
 import com.rick.fleetioassignment.repository.VehicleRepository
 import com.rick.fleetioassignment.ui.vehiclelist.VehicleItemAdapter
 import com.rick.fleetioassignment.ui.vehiclelist.VehicleListViewModel
@@ -13,6 +14,8 @@ val appModule = module {
     single { VehicleAPIClient.provideApi() }
 
     single { VehicleRepository(get()) }
+
+    single { VehiclePagingSource(get()) }
 
     factory { VehicleItemAdapter(androidContext()) }
 

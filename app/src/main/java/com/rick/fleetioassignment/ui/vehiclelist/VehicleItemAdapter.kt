@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,19 +15,7 @@ import com.rick.fleetioassignment.databinding.VehicleListItemBinding
 import com.rick.fleetioassignment.model.Vehicle
 
 class VehicleItemAdapter(private val context: Context) :
-    RecyclerView.Adapter<VehicleItemAdapter.DealItemViewHolder>() {
-
-    private val diffUtilItemCallback = object : DiffUtil.ItemCallback<Vehicle>() {
-        override fun areItemsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
-            return oldItem == newItem
-        }
-    }
-
-    private val listDiffer = AsyncListDiffer(this, diffUtilItemCallback)
+    PagingDataAdapter<Vehicle, VehicleItemAdapter.DealItemViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealItemViewHolder {
         val binding =
@@ -34,12 +23,8 @@ class VehicleItemAdapter(private val context: Context) :
         return DealItemViewHolder(binding, context)
     }
 
-    override fun getItemCount(): Int = listDiffer.currentList.size
-
-    fun submitList(list: List<Vehicle>) = listDiffer.submitList(list)
-
     override fun onBindViewHolder(holder: DealItemViewHolder, position: Int) {
-        holder.bind(listDiffer.currentList[position])
+        holder.bind(getItem(position)!!)
     }
 
     class DealItemViewHolder(
@@ -66,6 +51,18 @@ class VehicleItemAdapter(private val context: Context) :
                 .load(item.imageUrl)
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(50)))
                 .into(binding.vehiclePicture)
+        }
+    }
+
+    companion object {
+        private val diffCallback = object : DiffUtil.ItemCallback<Vehicle>() {
+            override fun areItemsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: Vehicle, newItem: Vehicle): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 }
