@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/vehicle_picture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_launcher_background" />
+
+
+    <TextView
+        android:id="@+id/vehicle_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/vehicle_picture"
+        app:layout_constraintTop_toTopOf="@+id/vehicle_picture"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/vehicle_make"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/vehicle_name"
+        app:layout_constraintTop_toBottomOf="@+id/vehicle_name"
+        tools:text="Make" />
+
+    <TextView
+        android:id="@+id/vehicle_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/vehicle_make"
+        app:layout_constraintTop_toTopOf="@+id/vehicle_make"
+        tools:text="Model" />
+
+    <TextView
+        android:id="@+id/vehicle_vin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/vehicle_make"
+        app:layout_constraintTop_toBottomOf="@+id/vehicle_make"
+        tools:text="Vin" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
